@@ -29,7 +29,7 @@ app.get("/", function(req, res) {
 
 
 app.get("/list", function(req, res) {
-  let listData = {listData: {
+  var listData = {listData: {
     firstName: "Chuck",
       lastName: "Norris",
       age: 75,
