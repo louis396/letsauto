@@ -8,13 +8,27 @@ export default class Table extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      listData: props.listData,
+    this.state = this.getStateFromProps(props);
+  }
+
+  getStateFromProps(props) {
+    // const state = this.state || {};
+    const schema = "schema" in props ? props.schema : this.props.schema;
+    const uiSchema = "uiSchema" in props ? props.uiSchema : this.props.uiSchema;
+    const edit = typeof props.listData !== "undefined";
+    // const { definitions } = schema;
+    const listData = this.props.listData;
+
+    return {
+      schema,
+      uiSchema,
+      listData,
+      edit,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state = nextProps.listData;
+    this.state = this.getStateFromProps(nextProps);
   }
 
   renderList = listData => {
@@ -31,19 +45,28 @@ export default class Table extends Component {
     }
     return <tbody>{rows}</tbody>;
   };
+  renderListHead = schema => {
+    let headers = [];
+    for (let i = 0; i < Object.keys(schema.properties).length; i++) {
+      headers.push(<th scope="col">{Object.keys(schema.properties)[i]}</th>);
+    }
+    return (
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          {headers}
+        </tr>
+      </thead>
+    );
+  };
 
   render() {
-    var listData = this.state;
+    const { listData, schema } = this.state;
+    console.log(schema);
+
     return (
       <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Username</th>
-          </tr>
-        </thead>
+        {this.renderListHead(schema)}
         {this.renderList(listData)}
       </table>
     );
@@ -53,5 +76,6 @@ export default class Table extends Component {
 if (process.env.NODE_ENV !== "production") {
   Table.propTypes = {
     listData: PropTypes.array,
+    schema: PropTypes.object.isRequired,
   };
 }

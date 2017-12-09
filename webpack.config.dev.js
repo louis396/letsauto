@@ -5,7 +5,7 @@ module.exports = {
   devtool: "eval",
   entry: [
     "webpack-hot-middleware/client?reload=true",
-    "./playground/app"
+    "./playground/app_table"
   ],
   output: {
     path: path.join(__dirname, "build"),

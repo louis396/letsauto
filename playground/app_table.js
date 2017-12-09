@@ -202,7 +202,7 @@ class App extends Component {
           </div>
         </div>
         <div className="col-sm-6">
-          <Table listData={listData} />
+          <Table listData={listData} schema={schema} />
         </div>
         <div className="col-sm-6">
           <Form schema={apiServerAddress} onSubmit={this.loadServerData}>
