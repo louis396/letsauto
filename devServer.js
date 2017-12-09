@@ -19,27 +19,72 @@ app.use(require("webpack-dev-middleware")(compiler, {
 
 app.use(require("webpack-hot-middleware")(compiler));
 
-app.get("/favicon.ico", function(req, res) {
+app.get("/favicon.ico", function (req, res) {
   res.status(204).end();
 });
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "playground", "index.html"));
 });
 
 
-app.get("/list", function(req, res) {
-  var listData = {listData: {
-    firstName: "Chuck",
-      lastName: "Norris",
-      age: 75,
-      bio: "Roundhouse kicking asses since 1940",
+app.get("/list", function (req, res) {
+  var listData = {
+    listData: [{
+      firstName: "louis",
+      lastName: "weng",
+      age: 30,
+      bio: "u rock",
+      password: "123",
+    }, {
+      firstName: "rex",
+      lastName: "zhou",
+      age: 12,
+      bio: "pp kicking asses since ",
       password: "noneed",
-  }}
+    }, {
+      firstName: "Mark",
+      lastName: "Zhang",
+      age: 33,
+      bio: "Kicking your ass",
+      password: "222",
+    }],
+    cData: [{
+      firstName: "xxx",
+      lastName: "666",
+      age: 666,
+      bio: "u rock",
+      password: "666",
+    }, {
+      firstName: "555",
+      lastName: "55",
+      age: 12,
+      bio: "pp 555 asses since ",
+      password: "noneed",
+    }, {
+      firstName: "555",
+      lastName: "77",
+      age: 33,
+      bio: "777 your ass",
+      password: "777",
+    }, {
+      firstName: "888",
+      lastName: "88",
+      age: 33,
+      bio: "88 your ass",
+      password: "777",
+    }, {
+      firstName: "999",
+      lastName: "1288",
+      age: 12,
+      bio: "777 your ass",
+      password: "019",
+    }]
+  }
   res.send(listData);
 });
 
-app.listen(port, host, function(err) {
+app.listen(port, host, function (err) {
   if (err) {
     console.log(err);
     return;
