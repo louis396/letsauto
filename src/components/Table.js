@@ -50,15 +50,28 @@ export default class Table extends Component {
     }
     return <tbody>{rows}</tbody>;
   };
+
+  removePropertyWithKey = propertyKey => {
+    this.props.onSchemaPropertyChanged(propertyKey);
+  };
+
   renderListHead = schema => {
     let headers = [];
     for (let i = 0; i < Object.keys(schema.properties).length; i++) {
       headers.push(
         <th scope="col" key={i}>
           {Object.keys(schema.properties)[i]}
+          <span
+            onClick={this.removePropertyWithKey.bind(
+              this,
+              Object.keys(schema.properties)[i]
+            )}
+            className="valid glyphicon glyphicon-remove"
+          />
         </th>
       );
     }
+
     return (
       <thead>
         <tr>
@@ -85,5 +98,6 @@ if (process.env.NODE_ENV !== "production") {
   Table.propTypes = {
     listData: PropTypes.array,
     schema: PropTypes.object.isRequired,
+    onSchemaPropertyChanged: PropTypes.func,
   };
 }

@@ -140,10 +140,6 @@ class App extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return shouldRender(this, nextProps, nextState);
-  }
-
   load = data => {
     // Reset the ArrayFieldTemplate whenever you load new data
     const { ArrayFieldTemplate, ObjectFieldTemplate } = data;
@@ -175,6 +171,12 @@ class App extends Component {
       };
     }
     this.setState({ schema, listData });
+  };
+
+  onSchemaPropertyChanged = schemaKey => {
+    const { schema } = this.state;
+    delete schema.properties[schemaKey];
+    this.onSchemaEdited(schema);
   };
 
   loadServerData = ({ formData }) => {
@@ -213,7 +215,11 @@ class App extends Component {
           </div>
         </div>
         <div className="col-sm-6">
-          <Table listData={listData} schema={schema} />
+          <Table
+            listData={listData}
+            schema={schema}
+            onSchemaPropertyChanged={this.onSchemaPropertyChanged}
+          />
         </div>
         <div className="col-sm-6">
           <Form schema={apiServerAddress} onSubmit={this.loadServerData}>
