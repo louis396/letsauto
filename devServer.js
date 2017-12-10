@@ -36,18 +36,21 @@ app.get("/list", function (req, res) {
       age: 30,
       bio: "u rock",
       password: "123",
+      dataTime: '20170909'
     }, {
       firstName: "rex",
       lastName: "zhou",
       age: 12,
       bio: "pp kicking asses since ",
       password: "noneed",
+      dataTime: '20171009'
     }, {
       firstName: "Mark",
       lastName: "Zhang",
       age: 33,
       bio: "Kicking your ass",
       password: "222",
+      dataTime: '20161009'
     }],
     cData: [{
       firstName: "xxx",
@@ -55,32 +58,37 @@ app.get("/list", function (req, res) {
       age: 666,
       bio: "u rock",
       password: "666",
+      dataTime: '20181009'
     }, {
       firstName: "555",
       lastName: "55",
       age: 12,
       bio: "pp 555 asses since ",
       password: "noneed",
+      dataTime: '20181119'
     }, {
       firstName: "555",
       lastName: "77",
       age: 33,
       bio: "777 your ass",
       password: "777",
+      dataTime: '20180119'
     }, {
       firstName: "888",
       lastName: "88",
       age: 33,
       bio: "88 your ass",
       password: "777",
+      dataTime: '20170919'
     }, {
       firstName: "999",
       lastName: "1288",
       age: 12,
       bio: "777 your ass",
       password: "019",
+      dataTime: '20171019'
     }]
-  }
+  };
   res.send(listData);
 });
 

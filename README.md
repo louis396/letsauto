@@ -1,4 +1,4 @@
-react-jsonschema-system
+react-letsauto-system
 =====================
 
 [![Build Status](https://travis-ci.org/mozilla-services/react-jsonschema-form.svg)](https://travis-ci.org/mozilla-services/react-jsonschema-form)

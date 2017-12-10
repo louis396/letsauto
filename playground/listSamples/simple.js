@@ -25,11 +25,9 @@ module.exports = {
   },
   uiSchema: {
     firstName: {},
+    lastName: {},
     age: {},
     bio: {},
-    password: {},
-    date: {},
-    telephone: {},
   },
   listData: [
     {
@@ -37,21 +35,18 @@ module.exports = {
       lastName: "weng",
       age: 30,
       bio: "u rock",
-      password: "123",
     },
     {
       firstName: "rex",
       lastName: "zhou",
       age: 12,
       bio: "pp kicking asses since ",
-      password: "noneed",
     },
     {
       firstName: "Mark",
       lastName: "Zhang",
       age: 33,
       bio: "Kicking your ass",
-      password: "222",
     },
   ],
 };

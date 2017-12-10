@@ -31,24 +31,36 @@ export default class Table extends Component {
     this.state = this.getStateFromProps(nextProps);
   }
 
-  renderList = listData => {
+  renderContent = (index, oneLine, schema) => {
+    let contents = [];
+    for (let i = 0; i < Object.keys(schema.properties).length; i++) {
+      contents.push(
+        <td key={i}>{oneLine[Object.keys(schema.properties)[i]]}</td>
+      );
+    }
+    return (
+      <tr key={index}>
+        <th scope="row">{index + 1}</th>
+        {contents}
+      </tr>
+    );
+  };
+
+  renderList = (listData, schema) => {
     let rows = [];
     for (let i = 0; i < listData.length; i++) {
-      rows.push(
-        <tr key={i}>
-          <th scope="row">{i + 1}</th>
-          <td>{listData[i].firstName}</td>
-          <td>{listData[i].age}</td>
-          <td>{listData[i].bio}</td>
-        </tr>
-      );
+      rows.push(this.renderContent(i, listData[i], schema));
     }
     return <tbody>{rows}</tbody>;
   };
   renderListHead = schema => {
     let headers = [];
     for (let i = 0; i < Object.keys(schema.properties).length; i++) {
-      headers.push(<th scope="col">{Object.keys(schema.properties)[i]}</th>);
+      headers.push(
+        <th scope="col" key={i}>
+          {Object.keys(schema.properties)[i]}
+        </th>
+      );
     }
     return (
       <thead>
@@ -62,12 +74,11 @@ export default class Table extends Component {
 
   render() {
     const { listData, schema } = this.state;
-    console.log(schema);
 
     return (
       <table className="table">
         {this.renderListHead(schema)}
-        {this.renderList(listData)}
+        {this.renderList(listData, schema)}
       </table>
     );
   }
