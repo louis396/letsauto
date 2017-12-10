@@ -12,13 +12,10 @@ export default class Table extends Component {
   }
 
   getStateFromProps(props) {
-    // const state = this.state || {};
     const schema = "schema" in props ? props.schema : this.props.schema;
     const uiSchema = "uiSchema" in props ? props.uiSchema : this.props.uiSchema;
     const edit = typeof props.listData !== "undefined";
-    // const { definitions } = schema;
-    const listData = this.props.listData;
-
+    const listData = props.listData;
     return {
       schema,
       uiSchema,

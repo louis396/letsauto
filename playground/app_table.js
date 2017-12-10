@@ -164,7 +164,18 @@ class App extends Component {
 
   onListDataEdited = listData => this.setState({ listData });
 
-  onListSelected = listData => this.setState({ listData });
+  onListSelected = listData => {
+    let { schema } = this.state;
+    schema.properties = {};
+    for (let i = 0; i < Object.keys(listData[0]).length; i++) {
+      let obj = Object.keys(listData[0])[i];
+      schema.properties[obj] = {
+        type: "string",
+        title: obj,
+      };
+    }
+    this.setState({ schema, listData });
+  };
 
   loadServerData = ({ formData }) => {
     let self = this;
